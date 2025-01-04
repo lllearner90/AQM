@@ -19,3 +19,10 @@ The sensor data will also be broadcasted over a zigbee / thread network and can 
 - [ ] **Communication**
   - [ ] Zigbee
   - [ ] Thread
+
+## Hardware choices
+The aim is to squeeze the Data Acquistion & conditioning along with the communication into a single microcontroller. A couple of low cost options were considered as captured in [Choices.md](./Design/Choices.md).  
+The hardware section would look roughly like below: ![Hardware_block_diagram](./Design/hardware_block_diagram.drawio.png)
+
+## Software choices
+The software be designed around an RTOS either Zephyr or Freertos that is supported by the Espressif toolchain.
