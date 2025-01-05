@@ -25,4 +25,4 @@ The aim is to squeeze the Data Acquistion & conditioning along with the communic
 The hardware section would look roughly like below: ![Hardware_block_diagram](./Design/hardware_block_diagram.drawio.png)
 
 ## Software choices
-The software be designed around an RTOS either Zephyr or Freertos that is supported by the Espressif toolchain.
+The software will be designed around an RTOS either Zephyr or Freertos that is supported by the Espressif toolchain.
