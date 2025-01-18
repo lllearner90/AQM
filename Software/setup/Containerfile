@@ -1,0 +1,14 @@
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE:-ghcr.io/zephyrproject-rtos/zephyr-build:latest}
+
+WORKDIR /workdir
+
+# # Get the zephyr source code
+# RUN cd ${WORKDIR} && \
+#     west init ~/zephyrproject && \
+#     cd zephyrproject && \
+#     west update
+
+# # Export Zephyr CMake package & install west packages
+# RUN cd ${WORKDIR} && west zephyr-export && \
+#     west packages pip --install

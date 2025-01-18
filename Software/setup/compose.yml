@@ -1,0 +1,42 @@
+services:
+  AQM_dev_env:
+    image: zephyr_env
+    build:
+      context: .
+      dockerfile: Containerfile
+    stdin_open: true
+    tty: true
+    hostname: AQM_DEV
+    environment:
+      - ZEPHYR_SDK_INSTALL_DIR=/opt/toolchains
+      - ZEPHYR_BASE="/workdir/zephyrproject/zephyr"
+    ports:
+      - "5900:5900"
+    entrypoint: /mnt/ws/setup/entrypoint.sh
+    volumes:
+      - type: bind
+        source: ../
+        target: /mnt/ws
+
+      - type: bind
+        source: ${HOME}/.docker_bash_history
+        target: /root/.bash_history
+
+      - type: bind
+        source: ${HOME}/.docker_bashrc
+        target: /root/.bashrc
+      
+      # TODO: Maybe use a perisitent storage to pull the zephyr source repo into 
+      #       such that it can be shared among projects using the dev container
+      # - type: volume
+      #   source: zephyr_data_volume
+      #   target: /workdir
+      - type: bind
+        source: ../zephyr_source_repo
+        target: /workdir # Since this is the path exported by the Base docker image from zephyr
+
+secrets:
+  ssh_id_rsa_pub_secret:
+    file: ${HOME}/.ssh/id_rsa.pub
+  ssh_id_rsa_private_secret:
+    file: ${HOME}/.ssh/id_rsa
