@@ -1,2 +1,4 @@
 */.west
 */zephyr_source_repo/*
+*/zephyr_venv/*
+*/build/*

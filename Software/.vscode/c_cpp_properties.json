@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "AQM ZEPHYR Container WS",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/opt/toolchains/zephyr*/**",
+                "/workdir/zephyrproject/zephyr/**"
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "intelliSenseMode": "linux-clang-x64",
+            "compilerPath": "/usr/bin/clang++-16",
+            "dotConfig": "${workspaceFolder}/build/zephyr/.config"
+        }
+    ],
+    "version": 4
+}

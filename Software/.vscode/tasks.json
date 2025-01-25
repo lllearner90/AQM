@@ -1,0 +1,61 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "command": "/bin/bash",
+            "args": [
+                "-c",
+                "if [[ \"${input:buildType}\" == \"Pristine Build\" ]]; then west build aqm --pristine; elif [[ \"${input:buildType}\" == \"Clean Build\" ]]; then west build -t clean && west build aqm; else west build aqm; fi"
+            ]
+        },
+        {
+            "label": "ESP Flash to target",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "command": "/bin/bash",
+            "args": [
+                "-c",
+                "west flash --esp-device /dev/ttyESP32 && west espressif monitor -p /dev/ttyESP32"
+            ],
+            "detail": "Flash to target and monitor"
+        }
+    ],
+    "inputs": [
+        {
+            "type": "pickString",
+            "id": "buildType",
+            "options": [
+                "Build",
+                "Clean Build",
+                "Pristine Build"
+            ],
+            "description": "Select build type:",
+            "default": "Build"
+        },
+    ]
+}
