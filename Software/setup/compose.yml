@@ -9,9 +9,12 @@ services:
     hostname: AQM_DEV
     environment:
       - ZEPHYR_SDK_INSTALL_DIR=/opt/toolchains
-      - ZEPHYR_BASE="/workdir/zephyrproject/zephyr"
+      - ZEPHYR_BASE=/workdir/zephyrproject/zephyr
     ports:
       - "5900:5900"
+    devices:
+      # JTAG/Serial device port than you want to access with Zephyr west utility
+      - /dev/serial/by-id/usb-Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0001-if00-port0:/dev/ttyESP32
     entrypoint: /mnt/ws/setup/entrypoint.sh
     volumes:
       - type: bind
@@ -20,11 +23,11 @@ services:
 
       - type: bind
         source: ${HOME}/.docker_bash_history
-        target: /root/.bash_history
+        target: /home/user/.bash_history
 
       - type: bind
         source: ${HOME}/.docker_bashrc
-        target: /root/.bashrc
+        target: /home/user/.bashrc
       
       # TODO: Maybe use a perisitent storage to pull the zephyr source repo into 
       #       such that it can be shared among projects using the dev container

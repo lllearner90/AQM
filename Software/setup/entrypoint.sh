@@ -16,4 +16,7 @@ cd "$ZEPHYR_PROJECT_DIR" && \
         west zephyr-export
 cd /mnt/ws
 
+# Enable west auto completion
+west completion bash > ~/west-completion.bash; echo "source ~/west-completion.bash" >> ~/.bashrc
+
 /bin/bash
